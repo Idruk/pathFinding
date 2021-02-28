@@ -1,8 +1,8 @@
+import Table from "./component/table"
+
 function App() {
   return (
-    <div className="App">
-      hello
-    </div>
+    <Table></Table>
   );
 }
 
