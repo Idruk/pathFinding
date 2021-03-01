@@ -4,6 +4,20 @@ const tdStyle = {
     height: "25px"
 }
 
+const tdStartStyle = {
+    border:"1px solid rgb(100, 100, 100)",
+    backgroundColor:"#0f0",
+    width: "25px",
+    height: "25px"
+}
+
+const tdEndStyle = {
+    border:"1px solid rgb(100, 100, 100)",
+    backgroundColor:"#00f",
+    width: "25px",
+    height: "25px"
+}
+
 const tableStyle = {
     borderSpacing: "0",
     margingLeft: "10px",
@@ -14,11 +28,16 @@ function Table() {
 
     function addEventOnTd () {
         const d = document.querySelectorAll('#table td')
-        d.forEach(e => e.addEventListener("click", function() {
-            this.style.background="#000";
+        d.forEach(e => e.addEventListener("mouseenter", function(e) {
+            
             console.log(this)
-            if (this.className == "blanc") {
+            if (this.className == "blanc" && this.className != "start" && this.className != "end") {
                 this.className = "wall"
+                this.style.background="#000";
+            }
+            else if (this.className == "wall" && this.className != "start" && this.className != "end") {
+                this.className = "blanc"
+                this.style.background="#fff";
             }
         }));
     }
@@ -38,6 +57,10 @@ function Table() {
                     return ( <tr key={t}>
                         {
                             row.map(function (item, indexRow) {
+                                if (t == 10 && indexRow == 15)
+                                    return (<td style={tdStartStyle} className="start" key={t + " " + indexRow} id={t + " " + indexRow} ></td>)
+                                if (t == 10 && indexRow == 50)
+                                    return (<td style={tdEndStyle} className="end" key={t + " " + indexRow} id={t + " " + indexRow} ></td>)
                                 return (
                                     <td style={tdStyle} className="blanc" key={t + " " + indexRow} id={t + " " + indexRow} ></td>
                                 )
