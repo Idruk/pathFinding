@@ -7,6 +7,7 @@ function breathFrist(tab, domTab) {
 
         queue.push({row:10, col: 15})
         visited.push("10x15")
+        let sec = 0
 
         while(queue.length > 0) {
 
@@ -37,7 +38,8 @@ function breathFrist(tab, domTab) {
                     if (!(nRow == 10 && nCol == 50)) {
                         // setInterval(function () {domTab[nRow][nCol].style.background="#f00"; domTab[nRow][nCol].style.transition = "2s";}, 2000)
                         domTab[nRow][nCol].style.background="#f00";
-                         domTab[nRow][nCol].style.transition = "3s";
+                        domTab[nRow][nCol].style.transition = sec +"s";
+                        sec += 0.5
                         
                     }
                     
