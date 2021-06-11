@@ -8,6 +8,39 @@ function Table() {
     const ROW = 70
 
     const [tab, setTab] = useState([])
+    const [grid, setGrid] = useState([])
+
+    const [wallPut, setWallPut] = useState(false)
+
+
+    //////////////////
+    // Create CELL //
+    ////////////////
+    function Cell(props) {
+
+        const [x, setX] = useState(props.pos.x)
+        const [y, setY] = useState(props.pos.y)
+        const [state, setState] = useState(props.state)
+
+        const [color, setColor] = useState("#ffffffff")
+
+        // function defineColor() {
+        //     if (state == 0) {
+        //         setColor("#ffffffff")
+        //     }
+        // }
+
+        function changeState() {
+            if (wallPut) {
+                setColor('#000000ff')
+            }
+            console.log(color)
+        }
+
+        return(
+            <div onMouseEnter={changeState} className={styles.divstyle} style={{...props.style, ...{backgroundColor: color}}} key={props.key}></div>
+        )
+    }
 
     function createTab() {
 
@@ -19,13 +52,12 @@ function Table() {
             for (let j = 0; j < 70; j++) {
 
                 tab.push({
+                    style:{ top: top,left: left, zindex: 1},
                     key:`t-${i}-${j}`,
-                    style: {
-                        top: top,
-                        left: left,
-                        zindex: 1,
-                    }
-                })
+                    pos: {x: i, y: j},
+                    state: 0
+                }
+                )
                 left += 25
             }
             left = 0
@@ -40,15 +72,27 @@ function Table() {
         createTab()
     } , [])
 
+    function pulWalls() {
+        if (wallPut === false) {
+            setWallPut(true)
+        } else {
+            setWallPut(false)
+        }
+    }
+
+    function findPath() {
+        console.log(tab)
+    }
+
     return (
         <div>
-            <button type="button" onClick={() => console.log("add walls")}>Add Walls</button>
+            <button type="button" onClick={pulWalls}>Add Walls</button>
             <button type="button" onClick={() => console.log("find path")} >Find path</button>
             <div style={{position: "absolute"}}>
                 {
-                    tab.map(item => {
+                    tab.map((item, index) => {
                         return (
-                            <div className={styles.divstyle} style={item.style} key={item.key}></div>
+                            <Cell  key={item.key} style={item.style} pos={item.pos} state={item.state} index={index}/>
                         )
                     })
                 }
