@@ -8,7 +8,6 @@ function Table() {
     const ROW = 70
 
     const [tab, setTab] = useState([])
-    const [grid, setGrid] = useState([])
 
     const [wallPut, setWallPut] = useState(false)
 
@@ -18,23 +17,17 @@ function Table() {
     ////////////////
     function Cell(props) {
 
-        const [x, setX] = useState(props.pos.x)
-        const [y, setY] = useState(props.pos.y)
-        const [state, setState] = useState(props.state)
+        // const [x, setX] = useState(props.pos.x)
+        // const [y, setY] = useState(props.pos.y)
+        // const [state, setState] = useState(props.state)
 
-        const [color, setColor] = useState("#ffffffff")
-
-        // function defineColor() {
-        //     if (state == 0) {
-        //         setColor("#ffffffff")
-        //     }
-        // }
+        const [color, setColor] = useState(props.color)
 
         function changeState() {
             if (wallPut) {
-                setColor('#000000ff')
+                tab[props.index].color = "#000000ff"
+                setColor("#000000ff")
             }
-            console.log(color)
         }
 
         return(
@@ -55,7 +48,8 @@ function Table() {
                     style:{ top: top,left: left, zindex: 1},
                     key:`t-${i}-${j}`,
                     pos: {x: i, y: j},
-                    state: 0
+                    color: "#ffffffff",
+                    state: 0,
                 }
                 )
                 left += 25
@@ -92,7 +86,7 @@ function Table() {
                 {
                     tab.map((item, index) => {
                         return (
-                            <Cell  key={item.key} style={item.style} pos={item.pos} state={item.state} index={index}/>
+                            <Cell  key={item.key} style={item.style} pos={item.pos} state={item.state} index={index} color={item.color}/>
                         )
                     })
                 }
