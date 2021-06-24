@@ -1,0 +1,7 @@
+.divstyle {
+    border:1px solid rgb(0, 0, 0);
+    width: 25px;
+    height: 25px;
+    transition: 1s;
+    position: absolute;
+}
