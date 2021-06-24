@@ -1,6 +1,6 @@
-function breathFrist(tab, domTab) {
+function breathFrist(tab) {
 
-    return new Promise(resolve => {
+    return new Promise ((resolve, reject) => { 
         let queue = []
         let visited = []
         let visitedPrev= {}
@@ -22,7 +22,7 @@ function breathFrist(tab, domTab) {
                 { row: row + 1, col},
                 { row, col: col - 1}
             ]
-        
+
             for (let i = 0; i < 4; i++) {
                 const nRow = neighbors[i].row
                 const nCol = neighbors[i].col
@@ -31,25 +31,16 @@ function breathFrist(tab, domTab) {
 
                 if (nRow >= 20 || nRow < 0 || nCol >= 70 || nCol < 0)
                     continue
-                if (!(visited.includes(key)) && tab[nRow][nCol] !== 'wall') {
+                if (!(visited.includes(key)) && tab[70 * nRow + nCol].state !== 'wall') {
                     queue.push({row: nRow, col: nCol})
                     visited.push(key)
                     visitedPrev[key] = `${row}x${col}`
-                    if (!(nRow == 10 && nCol == 50)) {
-                        // setInterval(function () {domTab[nRow][nCol].style.background="#f00"; domTab[nRow][nCol].style.transition = "2s";}, 2000)
-                        domTab[nRow][nCol].style.background="#f00";
-                        domTab[nRow][nCol].style.transition = sec +"s";
-                        sec += 0.5
-                        
-                    }
-                    
-                }            
+                }
                 
             }
             if (queue.length > 2000)
                 break
         }
-        
         const path = []
         let tofind = "10x15"
         let current = "10x50"
@@ -60,9 +51,9 @@ function breathFrist(tab, domTab) {
             current = visitedPrev[current]
         } while (tofind != current)
         path.push(current)
-        resolve(path)
+        console.log("resolving")
+        resolve([path, visited])
     })
-    
 }
 
 export default breathFrist;
