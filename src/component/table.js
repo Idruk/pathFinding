@@ -19,7 +19,7 @@ function Table() {
         const [color, setColor] = useState(props.color)
 
         function changeState() {
-            if (wallPut && props.index != 715 && props.index != 750) {
+            if (wallPut && props.index !== 715 && props.index !== 750) {
                 tab[props.index].color = "#000000ff"
                 tab[props.index].state = "wall"
                 setColor("#000000ff")
@@ -63,10 +63,10 @@ function Table() {
         for (let i = 0; i < 20; i++) {
             for (let j = 0; j < 70; j++) {
 
-                if (i == 10 && j == 15) {
+                if (i === 10 && j === 15) {
                     cellColor = "#cc1616ff"
                 }
-                else if (i == 10 && j == 50) {
+                else if (i === 10 && j === 50) {
                     cellColor = "#cc8f16ff"
                 }
                 else {
@@ -97,7 +97,7 @@ function Table() {
         let delay = 2000
 
         for (let i = 0; visited[i]; i++) {
-            if (visited[i] != "10x15" && visited[i] != "10x50") {
+            if (visited[i] !== "10x15" && visited[i] !== "10x50") {
                 let current = visited[i].split('x')
                 let nRow = parseInt(current[0])
                 let nCol = parseInt(current[1])
@@ -111,7 +111,7 @@ function Table() {
         delay += 20000
         path = path.reverse()
         for(let i = 0; path[i]; i++) {
-            if (path[i] != "10x15" && path[i] != "10x50") {
+            if (path[i] !== "10x15" && path[i] !== "10x50") {
                 let current = path[i].split('x')
                 let nRow = parseInt(current[0])
                 let nCol = parseInt(current[1])

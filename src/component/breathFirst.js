@@ -7,13 +7,12 @@ function breathFrist(tab) {
 
         queue.push({row:10, col: 15})
         visited.push("10x15")
-        let sec = 0
 
         while(queue.length > 0) {
 
             const {row, col} = queue.shift()        
             
-            if (row == 10 && col == 50)
+            if (row === 10 && col === 50)
                 break
 
             const neighbors = [
@@ -53,7 +52,7 @@ function breathFrist(tab) {
                 resolve(null)
                 return
             }
-        } while (tofind != current)
+        } while (tofind !== current)
         path.push(current)
         console.log("resolving")
         resolve([path, visited])
