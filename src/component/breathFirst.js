@@ -12,7 +12,7 @@ function breathFrist(tab) {
         while(queue.length > 0) {
 
             const {row, col} = queue.shift()        
-
+            
             if (row == 10 && col == 50)
                 break
 
@@ -36,7 +36,6 @@ function breathFrist(tab) {
                     visited.push(key)
                     visitedPrev[key] = `${row}x${col}`
                 }
-                
             }
             if (queue.length > 2000)
                 break
@@ -45,10 +44,15 @@ function breathFrist(tab) {
         let tofind = "10x15"
         let current = "10x50"
         let j = 0
-
         do {
             path.push(current)
             current = visitedPrev[current]
+            j++
+            if (j > 1500) {
+                console.log("no path")
+                resolve(null)
+                return
+            }
         } while (tofind != current)
         path.push(current)
         console.log("resolving")
