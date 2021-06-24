@@ -19,7 +19,7 @@ function Table() {
         const [color, setColor] = useState(props.color)
 
         function changeState() {
-            if (wallPut) {
+            if (wallPut && props.index != 715 && props.index != 750) {
                 tab[props.index].color = "#000000ff"
                 tab[props.index].state = "wall"
                 setColor("#000000ff")
@@ -95,9 +95,6 @@ function Table() {
         let path = bfs[0]
         let visited = bfs[1]
         let delay = 2000
-
-        if (path == null)
-            return
 
         for (let i = 0; visited[i]; i++) {
             if (visited[i] != "10x15" && visited[i] != "10x50") {
