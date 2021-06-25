@@ -7,6 +7,7 @@ function Table() {
     const [tab, setTab] = useState([])
     const [refs, setRefs] = useState([])
     const [wallPut, setWallPut] = useState(false)
+    const [down, setDown] = useState(false)
 
     // const [, updateState] = React.useState();
     // const forceUpdate = React.useCallback(() => updateState({}), []);
@@ -19,7 +20,7 @@ function Table() {
         const [color, setColor] = useState(props.color)
 
         function changeState() {
-            if (wallPut && props.index !== 715 && props.index !== 750) {
+            if (down && wallPut && props.index !== 715 && props.index !== 750) {
                 tab[props.index].color = "#000000ff"
                 tab[props.index].state = "wall"
                 setColor("#000000ff")
@@ -127,7 +128,7 @@ function Table() {
             <button type="button" onClick={pulWalls}>Add Walls</button>
             <button type="button" onClick={findPath} >Find path</button>
             <button type="button" onClick={createCellTab} >reset</button>
-            <div style={{position: "absolute"}}>
+            <div onMouseDown={()=> setDown(true)} onMouseUp={()=> setDown(false)} style={{position: "absolute"}}>
                 {
                     tab.map((item, index) => {
                         return (
