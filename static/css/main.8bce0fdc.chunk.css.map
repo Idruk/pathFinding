@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/component/tablecss.module.css"],"names":[],"mappings":"AAAA,0BACI,qBAA6B,CAC7B,UAAW,CACX,WAAY,CACZ,aAAc,CACd,iBACJ","file":"main.8bce0fdc.chunk.css","sourcesContent":[".divstyle {\n    border:1px solid rgb(0, 0, 0);\n    width: 25px;\n    height: 25px;\n    transition: 1s;\n    position: absolute;\n}"]}
