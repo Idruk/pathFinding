@@ -126,6 +126,7 @@ function Table() {
         <div>
             <button type="button" onClick={pulWalls}>Add Walls</button>
             <button type="button" onClick={findPath} >Find path</button>
+            <button type="button" onClick={createCellTab} >reset</button>
             <div style={{position: "absolute"}}>
                 {
                     tab.map((item, index) => {
